@@ -10,7 +10,7 @@ public class Pattern22 {
         int i, j, k = 0;
         for (i = n; i <= 1; i--) {
             //print right
-            
+
         }
     }
 }
