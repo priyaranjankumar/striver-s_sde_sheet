@@ -1,3 +1,16 @@
+/**
+ * This program takes two arguments: a file name and a date in the format YYYY-MM-DD.
+ * It opens the file in read-write mode, reads the header of the file, manipulates the header as needed,
+ * and writes the modified header back to the file. The header is assumed to be the first 56 characters of the file.
+ * The manipulation in this program replaces the string "001|" in the header with "001|YYYY-MM-DD".
+ * If the arguments are not provided or are not in the correct format, the program returns an error.
+ * 
+ * @param argc The number of arguments passed to the program.
+ * @param argv An array of strings containing the arguments passed to the program.
+ *             The first argument should be the file name, and the second argument should be the date in the format YYYY-MM-DD.
+ * 
+ * @return 0 if the program executes successfully, and 1 if there is an error.
+ */
 #include <stdio.h>
 #include <string.h>
 
