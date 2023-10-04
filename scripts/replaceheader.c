@@ -1,4 +1,6 @@
 /**
+ * @Author: PRIYA RANJAN KUMAR
+ * @Date: 2023-10-0 20:00:00
  * This program takes two arguments: a file name and a date in the format YYYY-MM-DD.
  * It opens the file in read-write mode, reads the header of the file, manipulates the header as needed,
  * and writes the modified header back to the file. The header is assumed to be the first 56 characters of the file.
