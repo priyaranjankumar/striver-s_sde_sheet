@@ -21,7 +21,8 @@ Updates the header of all CSV files in the /home/user/Documents/CSVs folder with
 .NOTES
 This script requires the "replaceheader.exe" executable file to be located in the same directory as the script file.
 #>
-
+    $swm = new-object System.Diagnostics.Stopwatch
+    $swm.Start()
 # Check if a folder path argument was provided
 if ($args[0]) {
     # If a folder path argument was provided, use it
@@ -59,7 +60,14 @@ else {
 
 $files = Get-ChildItem -Path $folderPath -Filter "*.csv"
 # Iterate over the files in the folder
+
 foreach ($file in $files) {
+    $sw = new-object System.Diagnostics.Stopwatch
+    $sw.Start()
     Write-Host $file.FullName
     & "./replaceheader.exe" $file.FullName $dateString
+    $sw.Stop()
+    Write-Host "Heaeder update in " $sw.Elapsed.TotalSeconds "seconds"  $file.FullName
 }
+ $swm.Stop()
+    Write-Host "Total update time " $swm.Elapsed.TotalSeconds "seconds"
