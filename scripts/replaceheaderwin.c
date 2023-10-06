@@ -16,25 +16,31 @@
 #include <stdio.h>
 #include <string.h>
 
-int main(int argc, char* argv[]) {
-printf("No of argument provided: %d\n", argc);
-    if (argc < 3 || argc >4) {
+int main(int argc, char *argv[])
+{
+    printf("No of argument provided: %d\n", argc);
+    if (argc < 3 || argc > 4)
+    {
         printf("Provide all arguments");
         return 1;
     }
-    if (argv[0][0] == '\0') {
+    if (argv[0][0] == '\0')
+    {
         printf("File name must not be empty");
         return 1;
     }
-    if (argv[2][0] == '\0') {
+    if (argv[2][0] == '\0')
+    {
         printf("Date must not be empty");
         return 1;
     }
-    if (strlen(argv[2]) != 10) {
+    if (strlen(argv[2]) != 10)
+    {
         printf("Date must be 10 characters long");
         return 1;
     }
-    if (argv[2][4] != '-' || argv[2][7] != '-') {
+    if (argv[2][4] != '-' || argv[2][7] != '-')
+    {
         printf("Date must be in the format YYYY-MM-DD");
         return 1;
     }
@@ -45,11 +51,13 @@ printf("No of argument provided: %d\n", argc);
         argv[2][5] < '0' || argv[2][5] > '9' ||
         argv[2][6] < '0' || argv[2][6] > '9' ||
         argv[2][8] < '0' || argv[2][8] > '9' ||
-        argv[2][9] < '0' || argv[2][9] > '9') {
+        argv[2][9] < '0' || argv[2][9] > '9')
+    {
         printf("Date must be in the format YYYY-MM-DD");
         return 1;
     }
-    if (argv[2][5] != '0' && argv[2][5] != '1') {
+    if (argv[2][5] != '0' && argv[2][5] != '1')
+    {
         printf("Month must be between 01 and 12");
         return 1;
     }
@@ -58,14 +66,16 @@ printf("No of argument provided: %d\n", argc);
     printf("argv[2]: %s\n", argv[2]);
     // Open the file in read-write mode
     FILE *file = fopen(argv[1], "r+b");
-    if (file == NULL) {
+    if (file == NULL)
+    {
         printf("Failed to open file");
         return 1;
     }
 
     // Read the header of the file
     char header[56];
-    if (fgets(header, sizeof(header), file) == NULL) {
+    if (fgets(header, sizeof(header), file) == NULL)
+    {
         printf("Failed to read header");
         fclose(file);
         return 1;
@@ -73,36 +83,43 @@ printf("No of argument provided: %d\n", argc);
 
     // Manipulate the header as needed
     // For example, replace "old" with "new"
-    //Take input
+    // Take input
     char *old = "001|";
     char *date = argv[2];
-    char new[14]="";
+    char new[25] = "";
     char *pos = strstr(header, old);
     printf("pos: %s\n", pos);
     printf("old: %s\n", old);
-    strcpy(new,old);
+    strcpy(new, old);
     printf("new: %s\n", new);
-    strcat(new,date);
+    strcat(new, date);
     printf("new: %s\n", new);
-    if (pos != NULL) {
+    strcat(new, "|");
+    printf("new: %s\n", new);
+    strcat(new, date);
+    printf("new: %s\n", new);
+    if (pos != NULL)
+    {
         strncpy(pos, new, strlen(new));
-
     }
 
     // Write the modified header back to the file
-    if (fseek(file, 0, SEEK_SET) != 0) {
+    if (fseek(file, 0, SEEK_SET) != 0)
+    {
         printf("Failed to seek to beginning of file");
         fclose(file);
         return 1;
     }
-    if (fputs(header, file) == EOF) {
+    if (fputs(header, file) == EOF)
+    {
         printf("Failed to write header");
         fclose(file);
         return 1;
     }
 
     // Close the file
-    if (fclose(file) != 0) {
+    if (fclose(file) != 0)
+    {
         printf("Failed to close file");
         return 1;
     }
