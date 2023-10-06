@@ -21,6 +21,7 @@ Updates the header of all CSV files in the /home/user/Documents/CSVs folder with
 .NOTES
 This script requires the "replaceheader.exe" executable file to be located in the same directory as the script file.
 #>
+Start-Transcript "Log.txt"
     $swm = new-object System.Diagnostics.Stopwatch
     $swm.Start()
 # Check if a folder path argument was provided
@@ -31,6 +32,7 @@ if ($args[0]) {
 else {
     # If no folder path argument was provided, prompt the user for a folder path
     Write-Host "Error: No argument provided."
+    Stop-Transcript
     return
 }
 Write-Host "Folder path: $folder"
@@ -47,6 +49,7 @@ if ($args[1]) {
     else {
         # If the date is invalid, stop the script
         Write-Host "Error: Invalid date argument provided. Please use the format 'yyyy-MM-dd'."
+        Stop-Transcript
         return
     }
 }
@@ -71,3 +74,4 @@ foreach ($file in $files) {
 }
  $swm.Stop()
     Write-Host "Total update time " $swm.Elapsed.TotalSeconds "seconds"
+Stop-Transcript
