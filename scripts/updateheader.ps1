@@ -58,7 +58,7 @@ else {
     Write-Host "No date argument was provided, using the current system date." $dateString
 }
 
-$files = Get-ChildItem -Path $folderPath -Filter "*.csv"
+$files = Get-ChildItem -Path $folder -Filter "*.csv"
 # Iterate over the files in the folder
 
 foreach ($file in $files) {
