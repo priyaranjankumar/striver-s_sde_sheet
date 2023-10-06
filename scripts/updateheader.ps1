@@ -67,7 +67,7 @@ foreach ($file in $files) {
     Write-Host $file.FullName
     & "./replaceheader.exe" $file.FullName $dateString
     $sw.Stop()
-    Write-Host "Heaeder update in " $sw.Elapsed.TotalSeconds "seconds"  $file.FullName
+    Write-Host "Header updated in " $sw.Elapsed.TotalSeconds "seconds"  $file.FullName
 }
  $swm.Stop()
     Write-Host "Total update time " $swm.Elapsed.TotalSeconds "seconds"
