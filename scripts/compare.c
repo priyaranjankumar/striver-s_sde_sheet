@@ -1,6 +1,6 @@
 /**
  * Compares two files line by line and prints the differences.
- * 
+ *
  * @param argc The number of command line arguments.
  * @param argv The array of command line arguments.
  * @return 0 if the files are identical, 1 otherwise.
@@ -35,9 +35,8 @@ for (int i = 0; i < strlen(argv[3]); i++) {
         fclose(file2);
         return 1;
     }
-} 
+}
 int MAX_LINE_LENGTH = atoi(argv[3]);
-    printf("MAX_LINE_LENGTH: %d\n", MAX_LINE_LENGTH);
     char line1[MAX_LINE_LENGTH];
     char line2[MAX_LINE_LENGTH];
     int lineNum = 1;
