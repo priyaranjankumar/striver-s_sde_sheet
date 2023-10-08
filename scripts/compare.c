@@ -8,12 +8,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#define MAX_LINE_LENGTH 1000
+#include <ctype.h>
 
 int main(int argc, char *argv[]) {
-    if (argc != 3) {
-        printf("Usage: %s file1 file2\n", argv[0]);
+    if (argc != 4) {
+        printf("Usage: %s file1 file2 MAX_LINE_LENGTH\n", argv[0]);
         return 1;
     }
 
@@ -29,7 +28,16 @@ int main(int argc, char *argv[]) {
         fclose(file1);
         return 1;
     }
-
+for (int i = 0; i < strlen(argv[3]); i++) {
+    if (!isdigit(argv[3][i])) {
+        printf("Error: %s is not a number\n", argv[3]);
+        fclose(file1);
+        fclose(file2);
+        return 1;
+    }
+} 
+int MAX_LINE_LENGTH = atoi(argv[3]);
+    printf("MAX_LINE_LENGTH: %d\n", MAX_LINE_LENGTH);
     char line1[MAX_LINE_LENGTH];
     char line2[MAX_LINE_LENGTH];
     int lineNum = 1;
