@@ -41,10 +41,16 @@ int MAX_LINE_LENGTH = atoi(argv[3]);
     char line2[MAX_LINE_LENGTH];
     int lineNum = 1;
     int differentLines = 0;
-
     while (fgets(line1, MAX_LINE_LENGTH, file1) != NULL && fgets(line2, MAX_LINE_LENGTH, file2) != NULL) {
+                if (isspace(line1[0])&& isspace(line2[0])) {
+            continue;
+    // skip empty lines
+        }
+           // printf("LineNumber:%d\n",lineNum);
+           // printf("line1:\n%s\n",line1);
+           // printf("line2:\n%s\n",line2);
         if (strcmp(line1, line2) != 0) {
-            printf("Line %d is different:\n%s%s", lineNum, line1, line2);
+            printf("Line %d is different:\n%s%s\n", lineNum, line1, line2);
             differentLines++;
         }
         lineNum++;
