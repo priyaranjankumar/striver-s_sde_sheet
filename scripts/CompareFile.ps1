@@ -130,7 +130,7 @@ $compareButton.Add_Click({
         # Write-Host "./compare.exe" $file1pathTextbox.Text $file2pathTextbox.Text $maxLineNumberTextbox.Text
         $arguments = @($file1pathTextbox.Text, $file2pathTextbox.Text, $maxLineNumberTextbox.Text)
         # write-host $arguments
-        $process = Start-Process -FilePath "compare.exe" -ArgumentList $arguments -PassThru -NoNewWindow -Wait -RedirectStandardOutput result.log
+        $process = Start-Process -FilePath ".\compare.exe" -ArgumentList $arguments -PassThru -NoNewWindow -Wait -RedirectStandardOutput result.log
         if($process.ExitCode -eq 0){
             [System.Windows.Forms.MessageBox]::Show("Find Result.log .", "Success", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
         }
