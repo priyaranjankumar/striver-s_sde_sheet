@@ -11,9 +11,10 @@ param(
 $sw = new-object System.Diagnostics.Stopwatch
 $sw.Start()
 $filename = $InputFileName
-$rootName = $OutputLocation
+# $rootName = $OutputLocation
 $ext = [System.IO.Path]::GetExtension($InputFileName)
-
+$rootName = $OutputLocation + "\" + (Get-Item -Path $filename).BaseName
+write-host $rootName
 $linesperFile = $SplitLines
 $filecount = 1
 $reader = $null
@@ -21,7 +22,7 @@ try {
     $reader = [io.file]::OpenText($filename)
     try {
         "Creating file number $filecount"
-        $writer = [io.file]::CreateText("{0}{1}.{2}" -f ($rootName, $filecount.ToString("000"), $ext))
+        $writer = [io.file]::CreateText("{0}{1}{2}" -f ($rootName, $filecount.ToString("000"), $ext))
         $filecount++
         $linecount = 0
 
